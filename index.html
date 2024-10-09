@@ -3,75 +3,42 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Your Minecraft Server</title>
+    <title>Minecraft Server Tracker</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            color: #333;
-            margin: 0;
-            padding: 20px;
-        }
-        header {
-            background: #333;
-            color: #fff;
-            padding: 10px 0;
-            text-align: center;
-        }
-        nav {
-            margin: 20px 0;
-        }
-        nav a {
-            margin: 0 15px;
-            text-decoration: none;
-            color: #333;
-        }
-        section {
-            margin: 20px 0;
-        }
-        footer {
-            text-align: center;
-            margin-top: 20px;
-            font-size: 0.8em;
-        }
+        body { font-family: Arial, sans-serif; }
+        #serverInfo { margin-top: 20px; }
+        .server { margin-bottom: 20px; }
     </style>
 </head>
 <body>
+    <h1>Minecraft Server Tracker</h1>
+    <input type="text" id="serverAddress" placeholder="Enter server address (e.g., 192.168.1.1:25565)">
+    <button onclick="getServerInfo()">Check Server</button>
+    
+    <div id="serverInfo"></div>
 
-<header>
-    <h1>Welcome to Your Minecraft Server!</h1>
-    <p>IP Address: your.server.ip</p>
-</header>
+    <script>
+        async function getServerInfo() {
+            const address = document.getElementById('serverAddress').value;
+            const response = await fetch(`https://api.mcsrvstat.us/2/${address}`);
+            const data = await response.json();
 
-<nav>
-    <a href="#about">About</a>
-    <a href="#rules">Rules</a>
-    <a href="#join">How to Join</a>
-</nav>
+            const infoDiv = document.getElementById('serverInfo');
+            infoDiv.innerHTML = ''; // Clear previous info
 
-<section id="about">
-    <h2>About the Server</h2>
-    <p>Here you can describe your Minecraft server, including the game modes, features, and what makes it unique.</p>
-</section>
-
-<section id="rules">
-    <h2>Server Rules</h2>
-    <ul>
-        <li>Respect all players.</li>
-        <li>No cheating or exploiting bugs.</li>
-        <li>Keep chat appropriate.</li>
-        <li>Have fun!</li>
-    </ul>
-</section>
-
-<section id="join">
-    <h2>How to Join</h2>
-    <p>To join the server, open Minecraft, go to Multiplayer, and enter the server IP: <strong>your.server.ip</strong></p>
-</section>
-
-<footer>
-    <p>&copy; 2024 Your Minecraft Server. All rights reserved.</p>
-</footer>
-
+            if (data.online) {
+                infoDiv.innerHTML = `
+                    <div class="server">
+                        <h2>${data.hostname || address}</h2>
+                        <p>Players: ${data.players.online}/${data.players.max}</p>
+                        <p>Version: ${data.version}</p>
+                        <p>Description: ${data.description}</p>
+                    </div>
+                `;
+            } else {
+                infoDiv.innerHTML = `<p>Server is offline or does not exist.</p>`;
+            }
+        }
+    </script>
 </body>
 </html>
