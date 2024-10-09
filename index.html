@@ -24,32 +24,51 @@
         h1 {
             margin-bottom: 20px;
         }
-        #playerCount {
-            font-size: 2em;
+        .server {
+            margin: 10px 0;
+            font-size: 1.2em;
             color: #333;
+        }
+        #loading {
+            color: #888;
         }
     </style>
 </head>
 <body>
     <div class="container">
         <h1>Minecraft Server Player Count</h1>
-        <div id="playerCount">Loading...</div>
+        <div id="loading">Loading...</div>
+        <div id="servers"></div>
     </div>
 
     <script>
-        // Replace with your server's URL or API endpoint
-        const serverUrl = 'YOUR_SERVER_URL_OR_JSON_ENDPOINT';
+        const servers = [
+            { name: 'Vanilla', url: 'thegamingcrib.minesmp.me' },
+            { name: 'Server 2', url: 'YOUR_SERVER_2_URL' },
+            // Add more servers as needed
+        ];
 
-        fetch(serverUrl)
-            .then(response => response.json())
-            .then(data => {
-                // Assuming data.players is the player count
-                document.getElementById('playerCount').innerText = data.players || '0';
-            })
-            .catch(error => {
-                console.error('Error fetching player count:', error);
-                document.getElementById('playerCount').innerText = 'Error';
-            });
+        const serverContainer = document.getElementById('servers');
+        const loadingText = document.getElementById('loading');
+
+        servers.forEach(server => {
+            const serverDiv = document.createElement('div');
+            serverDiv.className = 'server';
+            serverDiv.innerText = `${server.name}: `;
+
+            fetch(server.url)
+                .then(response => response.json())
+                .then(data => {
+                    serverDiv.innerText += data.players || '0';
+                    loadingText.style.display = 'none';
+                })
+                .catch(error => {
+                    console.error('Error fetching player count:', error);
+                    serverDiv.innerText += 'Error';
+                });
+
+            serverContainer.appendChild(serverDiv);
+        });
     </script>
 </body>
 </html>
