@@ -103,22 +103,22 @@
 </footer>
 
 <script>
+    function loadPosts() {
+        const posts = JSON.parse(localStorage.getItem('posts')) || [];
+        const postList = document.getElementById('postList');
+        postList.innerHTML = '';
+
+        posts.forEach(post => {
+            const newPost = document.createElement('div');
+            newPost.classList.add('post');
+            newPost.innerHTML = `<strong>${post.username}</strong>: <p>${post.content}</p>`;
+            postList.appendChild(newPost);
+        });
+    }
+
     function addPost(event) {
         event.preventDefault();
         const username = document.getElementById('username').value;
         const postContent = document.getElementById('postContent').value;
 
-        const postList = document.getElementById('postList');
-        const newPost = document.createElement('div');
-        newPost.classList.add('post');
-        newPost.innerHTML = `<strong>${username}</strong>: <p>${postContent}</p>`;
-        
-        postList.appendChild(newPost);
-
-        // Clear the form
-        document.getElementById('postForm').reset();
-    }
-</script>
-
-</body>
-</html>
+        const posts = 
