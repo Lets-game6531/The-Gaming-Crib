@@ -1,4 +1,5 @@
 // Your web app's Firebase configuration
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
   apiKey: "AIzaSyCv0lol2mMNJGl0O9VWbOhOCf7SsmYn3dM",
   authDomain: "the-gaming-crib.firebaseapp.com",
@@ -7,7 +8,6 @@ const firebaseConfig = {
   storageBucket: "the-gaming-crib.appspot.com",
   messagingSenderId: "531506996072",
   appId: "1:531506996072:web:a9fe814701bb06a5d2ecdd",
-  measurementId: "G-Z5EFR1HYC3"
 };
 
 // Initialize Firebase
