@@ -6,7 +6,7 @@
     <title>Minecraft Server Player Count</title>
     <style>
         body {
-            font-family: 'Minecraft', sans-serif; /* Custom font for Minecraft style */
+            font-family: 'Press Start 2P', cursive; /* Custom font for Minecraft style */
             background-color: #87CEEB; /* Sky blue */
             color: #ffffff;
             display: flex;
@@ -49,25 +49,37 @@
             font-size: 16px;
             text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
         }
+        canvas {
+            margin-top: 20px;
+            width: 100%;
+            max-width: 300px;
+            height: 150px;
+        }
     </style>
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet"> <!-- Google Fonts -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> <!-- Chart.js Library -->
 </head>
 <body>
     <div class="container">
         <h1>Minecraft Server Player Count</h1>
         <div id="loading">Loading...</div>
         <div id="servers"></div>
+        <canvas id="playerCountChart"></canvas> <!-- Canvas for the chart -->
     </div>
 
     <script>
         const servers = [
             { name: 'Example Server', url: 'https://mcapi.us/server/status?ip=example.minecraftserver.com' },
-            { name: 'Another Server', url: 'https://mcapi.us/server/status?ip=another.minecraftserver.com' },
+            { name: 'Vanilla', url: 'https://mcapi.us/server/status?ip=thegamingcrib.minesmp.me' },
             // Add more servers as needed
         ];
 
         const serverContainer = document.getElementById('servers');
         const loadingText = document.getElementById('loading');
+        const ctx = document.getElementById('playerCountChart').getContext('2d');
+
+        const playerCounts = []; // Array to store player counts
+        const labels = []; // Array to store timestamps for the x-axis
 
         servers.forEach(server => {
             const serverDiv = document.createElement('div');
@@ -77,7 +89,19 @@
             fetch(server.url)
                 .then(response => response.json())
                 .then(data => {
-                    serverDiv.innerText += data.players || '0';
+                    const playerCount = data.players || 0;
+                    serverDiv.innerText += playerCount;
+
+                    // Update the player counts and labels for the chart
+                    playerCounts.push(playerCount);
+                    labels.push(new Date().toLocaleTimeString());
+
+                    // Update the chart
+                    if (labels.length > 10) {
+                        labels.shift();
+                        playerCounts.shift();
+                    }
+                    updateChart();
                     loadingText.style.display = 'none';
                 })
                 .catch(error => {
@@ -87,6 +111,25 @@
 
             serverContainer.appendChild(serverDiv);
         });
-    </script>
-</body>
-</html>
+
+        // Create the chart
+        const playerCountChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: 'Player Count',
+                    data: playerCounts,
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                    fill: true,
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    x: {
+                        title: {
+                            display: true,
+                            text: 'Time'
+                        }
