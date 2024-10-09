@@ -6,7 +6,7 @@
     <title>Minecraft Server Player Count</title>
     <style>
         body {
-            font-family: 'Press Start 2P', cursive; /* Minecraft-style font */
+            font-family: 'Minecraft', sans-serif; /* Custom font for Minecraft style */
             background-color: #87CEEB; /* Sky blue */
             color: #ffffff;
             display: flex;
@@ -15,7 +15,7 @@
             justify-content: center;
             height: 100vh;
             margin: 0;
-            background-image: url('Background.png'); /* Local image file */
+            background-image: url('Background.png'); /* Optional: Background texture */
             background-size: cover;
         }
         .container {
@@ -61,8 +61,8 @@
 
     <script>
         const servers = [
-            { name: 'Modded', url: 'https://mcapi.us/server/status?ip=example.minecraftserver.com' },
-            { name: 'Vanilla (Cross-play)', url: 'https://mcapi.us/server/status?ip=thegamingcrib.minesmp.me' },
+            { name: 'Example Server', url: 'https://mcapi.us/server/status?ip=example.minecraftserver.com' },
+            { name: 'Vanilla', url: 'https://mcapi.us/server/status?ip=thegamingcrib.minesmp.me' },
             // Add more servers as needed
         ];
 
