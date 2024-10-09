@@ -4,95 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The Gaming Crib</title>
-    <style>
-        /* Same styles as before */
-    </style>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-
-<header>
-    <h1>Welcome to The Gaming Crib</h1>
-    <nav>
-        <a href="#about">About</a>
-        <a href="#rules">Rules</a>
-        <a href="#join">Join Us</a>
-        <a href="#posts">Posts</a>
-    </nav>
-</header>
-
-<main>
-    <section id="about">
-        <h2>About Our Server</h2>
-        <p>The Gaming Crib is a friendly Minecraft community...</p>
-    </section>
-
-    <section id="rules" class="server-info">
-        <h2>Server Rules</h2>
-        <ul>
-            <li>No griefing or stealing.</li>
-            <li>Respect all players.</li>
-            <li>No spamming in chat.</li>
-            <li>Have fun!</li>
-        </ul>
-    </section>
-
-    <section id="join">
-        <h2>How to Join</h2>
-        <p>Connect to our server using the IP: <strong>your.server.ip</strong>. We can’t wait to see you!</p>
-    </section>
-
-    <section id="posts" class="post-form">
-        <h2>User Posts</h2>
-        <form id="postForm" onsubmit="addPost(event)">
-            <label for="username">Name:</label>
-            <input type="text" id="username" required><br><br>
-            <label for="postContent">Post:</label><br>
-            <textarea id="postContent" rows="4" required></textarea><br><br>
-            <button type="submit">Submit Post</button>
+    <div class="container">
+        <h1>The Gaming Crib</h1>
+        <form id="postForm">
+            <textarea id="postContent" placeholder="Share your thoughts..." required></textarea>
+            <button type="submit">Post</button>
         </form>
-        <div class="post-list" id="postList"></div>
-    </section>
-</main>
-
-<footer>
-    <p>&copy; 2024 The Gaming Crib. All rights reserved.</p>
-</footer>
-
-<script>
-    async function loadPosts() {
-        const response = await fetch('http://localhost:3000/posts');
-        const posts = await response.json();
-        const postList = document.getElementById('postList');
-        postList.innerHTML = '';
-
-        posts.forEach(post => {
-            const newPost = document.createElement('div');
-            newPost.classList.add('post');
-            newPost.innerHTML = `<strong>${post.username}</strong>: <p>${post.content}</p>`;
-            postList.appendChild(newPost);
-        });
-    }
-
-    async function addPost(event) {
-        event.preventDefault();
-        const username = document.getElementById('username').value;
-        const postContent = document.getElementById('postContent').value;
-
-        await fetch('http://localhost:3000/posts', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ username, content: postContent }),
-        });
-
-        loadPosts();
-        document.getElementById('postForm').reset();
-    }
-
-    // Load posts when the page is loaded
-    window.onload = loadPosts;
-</script>
-
+        <div id="posts"></div>
+    </div>
+    <script src="script.js"></script>
 </body>
 </html>
