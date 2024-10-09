@@ -1,12 +1,13 @@
 // Your web app's Firebase configuration
 const firebaseConfig = {
-    apiKey: "YOUR_API_KEY",
-    authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
-    databaseURL: "https://YOUR_PROJECT_ID.firebaseio.com",
-    projectId: "YOUR_PROJECT_ID",
-    storageBucket: "YOUR_PROJECT_ID.appspot.com",
-    messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
-    appId: "YOUR_APP_ID"
+  apiKey: "AIzaSyCv0lol2mMNJGl0O9VWbOhOCf7SsmYn3dM",
+  authDomain: "the-gaming-crib.firebaseapp.com",
+  databaseURL: "https://the-gaming-crib-default-rtdb.firebaseio.com",
+  projectId: "the-gaming-crib",
+  storageBucket: "the-gaming-crib.appspot.com",
+  messagingSenderId: "531506996072",
+  appId: "1:531506996072:web:a9fe814701bb06a5d2ecdd",
+  measurementId: "G-Z5EFR1HYC3"
 };
 
 // Initialize Firebase
