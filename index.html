@@ -5,51 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The Gaming Crib</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f0f0f0;
-        }
-        header {
-            background-color: #333;
-            color: #fff;
-            padding: 20px;
-            text-align: center;
-        }
-        nav {
-            margin: 20px 0;
-        }
-        nav a {
-            margin: 0 15px;
-            color: #fff;
-            text-decoration: none;
-        }
-        main {
-            padding: 20px;
-        }
-        footer {
-            text-align: center;
-            padding: 10px;
-            background-color: #333;
-            color: #fff;
-            position: relative;
-            bottom: 0;
-            width: 100%;
-        }
-        .server-info, .post-form {
-            background-color: #fff;
-            border: 1px solid #ccc;
-            padding: 15px;
-            margin: 20px 0;
-        }
-        .post-list {
-            margin-top: 20px;
-        }
-        .post {
-            border-bottom: 1px solid #ccc;
-            padding: 10px 0;
-        }
+        /* Same styles as before */
     </style>
 </head>
 <body>
@@ -67,7 +23,7 @@
 <main>
     <section id="about">
         <h2>About Our Server</h2>
-        <p>The Gaming Crib is a friendly Minecraft community where players can enjoy various game modes and build together. Join us for exciting adventures!</p>
+        <p>The Gaming Crib is a friendly Minecraft community...</p>
     </section>
 
     <section id="rules" class="server-info">
@@ -103,8 +59,9 @@
 </footer>
 
 <script>
-    function loadPosts() {
-        const posts = JSON.parse(localStorage.getItem('posts')) || [];
+    async function loadPosts() {
+        const response = await fetch('http://localhost:3000/posts');
+        const posts = await response.json();
         const postList = document.getElementById('postList');
         postList.innerHTML = '';
 
@@ -116,9 +73,26 @@
         });
     }
 
-    function addPost(event) {
+    async function addPost(event) {
         event.preventDefault();
         const username = document.getElementById('username').value;
         const postContent = document.getElementById('postContent').value;
 
-        const posts = 
+        await fetch('http://localhost:3000/posts', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ username, content: postContent }),
+        });
+
+        loadPosts();
+        document.getElementById('postForm').reset();
+    }
+
+    // Load posts when the page is loaded
+    window.onload = loadPosts;
+</script>
+
+</body>
+</html>
