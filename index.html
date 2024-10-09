@@ -4,19 +4,74 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Your Minecraft Server</title>
-    <link rel="stylesheet" href="styles.css">
-    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-database.js"></script>
-
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+        }
+        header {
+            background: #333;
+            color: #fff;
+            padding: 10px 0;
+            text-align: center;
+        }
+        nav {
+            margin: 20px 0;
+        }
+        nav a {
+            margin: 0 15px;
+            text-decoration: none;
+            color: #333;
+        }
+        section {
+            margin: 20px 0;
+        }
+        footer {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 0.8em;
+        }
+    </style>
 </head>
 <body>
-    <h1>Welcome to My Minecraft Server</h1>
-    <div id="comments-section">
-        <h2>Comments</h2>
-        <ul id="comments-list"></ul>
-        <input type="text" id="comment-input" placeholder="Add a comment...">
-        <button id="submit-comment">Submit</button>
-    </div>
-    <script src="script.js"></script>
+
+<header>
+    <h1>Welcome to Your Minecraft Server!</h1>
+    <p>IP Address: your.server.ip</p>
+</header>
+
+<nav>
+    <a href="#about">About</a>
+    <a href="#rules">Rules</a>
+    <a href="#join">How to Join</a>
+</nav>
+
+<section id="about">
+    <h2>About the Server</h2>
+    <p>Here you can describe your Minecraft server, including the game modes, features, and what makes it unique.</p>
+</section>
+
+<section id="rules">
+    <h2>Server Rules</h2>
+    <ul>
+        <li>Respect all players.</li>
+        <li>No cheating or exploiting bugs.</li>
+        <li>Keep chat appropriate.</li>
+        <li>Have fun!</li>
+    </ul>
+</section>
+
+<section id="join">
+    <h2>How to Join</h2>
+    <p>To join the server, open Minecraft, go to Multiplayer, and enter the server IP: <strong>your.server.ip</strong></p>
+</section>
+
+<footer>
+    <p>&copy; 2024 Your Minecraft Server. All rights reserved.</p>
+</footer>
+
 </body>
 </html>
