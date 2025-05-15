@@ -100,23 +100,21 @@
     </ul>
     </div>
 
-    <div class="content" id="vote-vanilla">
-        <ul>
-            <h3><u>Vanilla (Cross-Play)</u></h3>
-            <li><a href="https://minecraft.buzz/vote/11136">Minecraft.buzz</a></li>
-            <li><a href="https://minecraft-server-list.com/server/506205/vote/">Minecraft-Server-list.com</a></li>
-            <li><a href="https://minecraft-mp.com/server/334882/vote/">Minecraft-mp.com</a></li>
-            <li><a href="https://minecraftservers.org/vote/664944">MinecraftServers.org</a></li>
-            <li><a href="https://minecraft-serverlist.com/server/1471/vote">Minecraft-ServerList.com</a></li>
-            <li><a href="https://minecraftpocket-servers.com/server/128474/vote/">MinecraftPocket-Servers.com</a></li>
-            <li><a href="https://www.minecraftiplist.com/server/TheGamingCrib-36312/vote">minecraftiplist.com</a></li>
-            <li><a href="https://www.curseforge.com/servers/minecraft/game/the-gaming-crib-2/vote">curseforge.com/servers</a></li>
-            <li><a href="https://play-minecraft-servers.com/minecraft-servers/the-gaming-crib/?tab=vote">play-minecraft-servers.com</a></li>
-            <li><a href="https://topg.org/minecraft-servers/server-670262#vote">topg.org/minecraft-servers</a></li>
-        </ul>
+    <div class="content" id="vote-vanilla"><h3 style="cursor:pointer;" onclick="toggleVanilla()"><u>Vanilla (Cross-Play)</u></h3>
+    <ul id="vanilla-links" style="display: none;">
+        <li><a href="https://minecraft.buzz/vote/11136">Minecraft.buzz</a></li>
+        <li><a href="https://minecraft-server-list.com/server/506205/vote/">Minecraft-Server-list.com</a></li>
+        <li><a href="https://minecraft-mp.com/server/334882/vote/">Minecraft-mp.com</a></li>
+        <li><a href="https://minecraftservers.org/vote/664944">MinecraftServers.org</a></li>
+        <li><a href="https://minecraft-serverlist.com/server/1471/vote">Minecraft-ServerList.com</a></li>
+        <li><a href="https://minecraftpocket-servers.com/server/128474/vote/">MinecraftPocket-Servers.com</a></li>
+        <li><a href="https://www.minecraftiplist.com/server/TheGamingCrib-36312/vote">minecraftiplist.com</a></li>
+        <li><a href="https://www.curseforge.com/servers/minecraft/game/the-gaming-crib-2/vote">curseforge.com/servers</a></li>
+        <li><a href="https://play-minecraft-servers.com/minecraft-servers/the-gaming-crib/?tab=vote">play-minecraft-servers.com</a></li>
+        <li><a href="https://topg.org/minecraft-servers/server-670262#vote">topg.org/minecraft-servers</a></li>
+    </ul>
     </div>
     </div>
-
 <script>
 function toggleModded() {
     const moddedLinks = document.getElementById("modded-links");
@@ -126,8 +124,16 @@ function toggleModded() {
         moddedLinks.style.display = "none";
     }
 }
-</script>
 
+function toggleVanilla() {
+    const vanillaLinks = document.getElementById("vanilla-links");
+    if (vanillaLinks.style.display === "none") {
+        vanillaLinks.style.display = "block";
+    } else {
+        vanillaLinks.style.display = "none";
+    }
+}
+</script>
     
 </body>
 </html>
