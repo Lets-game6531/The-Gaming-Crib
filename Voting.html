@@ -92,13 +92,14 @@
         <font align="center"><h2><u>Voting Links</u></h2></font>
     </div>
     <div class="content" id="vote-modded">
-        <ul>
-            <h3><u>Modded</u></h3>
+        <h3 style="cursor:pointer;" onclick="toggleModded()"><u>Modded</u></h3>
+        <ul id="modded-links" style="display: none;">
             <li><a href="https://minecraft.buzz/vote/10578">Minecraft.buzz</a></li>
             <li><a href="https://www.curseforge.com/servers/minecraft/game/the-gaming-crib-1/vote">curseforge.com/servers</a></li>
             <li><a href="https://moddedminecraftservers.com/server/the-gaming-crib.60627/">moddedminecraftservers.com</a></li>
-        </ul>
+    </ul>
     </div>
+
     <div class="content" id="vote-vanilla">
         <ul>
             <h3><u>Vanilla (Cross-Play)</u></h3>
@@ -116,5 +117,17 @@
     </div>
     </div>
 
+<script>
+function toggleModded() {
+    const moddedLinks = document.getElementById("modded-links");
+    if (moddedLinks.style.display === "none") {
+        moddedLinks.style.display = "block";
+    } else {
+        moddedLinks.style.display = "none";
+    }
+}
+</script>
+
+    
 </body>
 </html>
